@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.5'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id 'java'
+	id 'nu.studer.jooq' version '7.1.1'
 }
 
 group = 'aki.moon'
@@ -17,8 +18,62 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	jooqGenerator 'org.postgresql:postgresql:42.5.0'
+	jooqGenerator("jakarta.xml.bind:jakarta.xml.bind-api:3.0.0")
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jooq {
+	configurations {
+		main {  // name of the jOOQ configuration
+			generationTool {
+				logging = org.jooq.meta.jaxb.Logging.WARN
+				jdbc {
+					driver = 'org.postgresql.Driver'
+					url = 'jdbc:postgresql://localhost:5432/TechNewsConcierge_DB'
+					user = 'postgres'
+					password = 'TechNewsConcierge'
+//					properties {
+//						property {
+//							key = 'ssl'
+//							value = 'true'
+//						}
+//					}
+				}
+				generator {
+					name = 'org.jooq.codegen.DefaultGenerator'
+					database {
+						name = 'org.jooq.meta.postgres.PostgresDatabase'
+						inputSchema = 'public'
+						forcedTypes {
+							forcedType {
+								name = 'varchar'
+								includeExpression = '.*'
+								includeTypes = 'JSONB?'
+							}
+							forcedType {
+								name = 'varchar'
+								includeExpression = '.*'
+								includeTypes = 'INET'
+							}
+						}
+					}
+					generate {
+						deprecated = false
+						records = true
+						immutablePojos = true
+						fluentSetters = true
+					}
+					target {
+						packageName = 'aki.moon.TechNewsConcierge'
+						directory = 'build/generated-src/jooq/main'  // default (can be omitted)
+					}
+					strategy.name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+				}
+			}
+		}
+	}
 }
