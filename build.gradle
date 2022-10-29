@@ -20,6 +20,7 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	jooqGenerator 'org.postgresql:postgresql:42.5.0'
 	jooqGenerator("jakarta.xml.bind:jakarta.xml.bind-api:3.0.0")
+	implementation 'org.jooq:jooq'
 }
 
 tasks.named('test') {
@@ -36,12 +37,6 @@ jooq {
 					url = 'jdbc:postgresql://localhost:5432/TechNewsConcierge_DB'
 					user = 'postgres'
 					password = 'TechNewsConcierge'
-//					properties {
-//						property {
-//							key = 'ssl'
-//							value = 'true'
-//						}
-//					}
 				}
 				generator {
 					name = 'org.jooq.codegen.DefaultGenerator'
