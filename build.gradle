@@ -64,7 +64,6 @@ jooq {
 					}
 					target {
 						packageName = 'aki.moon.TechNewsConcierge'
-						directory = 'build/generated-src/jooq/main'  // default (can be omitted)
 					}
 					strategy.name = 'org.jooq.codegen.DefaultGeneratorStrategy'
 				}
