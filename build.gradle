@@ -15,9 +15,11 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-jooq'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'org.postgresql:postgresql:42.5.0'
 	jooqGenerator 'org.postgresql:postgresql:42.5.0'
 	jooqGenerator("jakarta.xml.bind:jakarta.xml.bind-api:3.0.0")
 	implementation 'org.jooq:jooq'
