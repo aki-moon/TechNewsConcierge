@@ -16,6 +16,9 @@ public class ArticleRepository {
                 .from(ARTICLE)
                 .where(ARTICLE.ID.eq(Integer.valueOf(id)))
                 .fetchInto(aki.moon.TechNewsConcierge.Article.class);
+        if (selected.isEmpty()) {
+            return null;
+        }
         return selected.stream().map(article -> new Article(article.id(), article.publishDate(), article.title(), article.description(), article.link())).toList().get(0);
     }
 }
