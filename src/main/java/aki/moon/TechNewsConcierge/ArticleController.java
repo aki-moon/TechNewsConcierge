@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 
 
 @Controller
-public class GreetingController {
+public class ArticleController {
     private DSLContext create;
 
     @Autowired
-    public GreetingController(DSLContext dslContext){
+    public ArticleController(DSLContext dslContext){
         this.create = dslContext;
     }
 
