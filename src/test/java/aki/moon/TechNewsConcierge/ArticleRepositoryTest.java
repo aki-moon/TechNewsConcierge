@@ -19,7 +19,7 @@ public class ArticleRepositoryTest {
 
     @Test
     public void t1() {
-        Object expect = new Article("200",  "2022-12-10", "title", "description", "https://www.example.com/blog/999");
+        Object expect = new Article("200", "2022-12-10", "title", "description", "https://www.example.com/blog/999");
 
         ArticleRecord articleRecord = this.dslContext.newRecord(ARTICLE);
         articleRecord.setId(200);

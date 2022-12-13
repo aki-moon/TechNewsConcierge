@@ -2,9 +2,9 @@ package aki.moon.TechNewsConcierge;
 
 import org.jooq.DSLContext;
 
-import static aki.moon.TechNewsConcierge.tables.Article.ARTICLE;
-
 import java.util.List;
+
+import static aki.moon.TechNewsConcierge.tables.Article.ARTICLE;
 
 public class ArticleRepository {
     private DSLContext create;
